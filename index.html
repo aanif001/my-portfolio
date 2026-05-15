@@ -61,11 +61,24 @@ body {
     white-space: nowrap;
 }
 
-.code1 { top: 60px; right: 60px; color: rgba(0,200,255,0.35); }
-.code2 { top: 260px; right: 120px; color: rgba(0,200,255,0.25); }
-.code3 { bottom: 120px; right: 80px; color: rgba(0,200,255,0.2); }
-.code4 { top: 180px; left: 60px; color: rgba(0,200,255,0.15); }
-.code5 { bottom: 200px; left: 100px; color: rgba(0,200,255,0.12); }
+/* Original 5 */
+.code1  { top: 60px;   right: 60px;  color: rgba(0,200,255,0.35); }
+.code2  { top: 260px;  right: 120px; color: rgba(0,200,255,0.25); }
+.code3  { bottom: 120px; right: 80px; color: rgba(0,200,255,0.2); }
+.code4  { top: 180px;  left: 60px;   color: rgba(0,200,255,0.15); }
+.code5  { bottom: 200px; left: 100px; color: rgba(0,200,255,0.12); }
+
+/* New extra snippets */
+.code6  { top: 5%;    left: 30%;   color: rgba(0,255,180,0.18); }
+.code7  { top: 20%;   left: 55%;   color: rgba(0,200,255,0.15); }
+.code8  { top: 40%;   right: 5%;   color: rgba(0,255,180,0.13); }
+.code9  { bottom: 5%; left: 35%;   color: rgba(0,200,255,0.18); }
+.code10 { bottom: 30%; right: 25%; color: rgba(0,255,180,0.15); }
+.code11 { top: 75%;   left: 20%;   color: rgba(0,200,255,0.13); }
+.code12 { top: 10%;   left: 45%;   color: rgba(0,255,180,0.12); }
+.code13 { bottom: 45%; left: 5%;   color: rgba(0,200,255,0.10); }
+.code14 { top: 55%;   right: 30%;  color: rgba(0,255,180,0.10); }
+.code15 { bottom: 10%; right: 40%; color: rgba(0,200,255,0.12); }
 
 @media (max-width: 768px) {
     .code { display: none; }
@@ -197,14 +210,8 @@ body {
         background: rgba(0,0,0,0.4);
     }
 
-    .top-left-name h1 {
-        font-size: 28px;
-    }
-
-    .top-left-name p {
-        font-size: 13px;
-        margin-top: 4px;
-    }
+    .top-left-name h1 { font-size: 28px; }
+    .top-left-name p { font-size: 13px; margin-top: 4px; }
 
     .center-content {
         display: flex;
@@ -215,22 +222,9 @@ body {
         text-align: center;
     }
 
-    .center-profile-img {
-        width: 160px;
-        height: 160px;
-        border-width: 3px;
-    }
-
-    .welcome-text {
-        font-size: 22px;
-        margin-top: 16px;
-    }
-
-    .welcome-sub {
-        font-size: 14px;
-        margin-top: 8px;
-        padding: 0 10px;
-    }
+    .center-profile-img { width: 160px; height: 160px; border-width: 3px; }
+    .welcome-text { font-size: 22px; margin-top: 16px; }
+    .welcome-sub { font-size: 14px; margin-top: 8px; padding: 0 10px; }
 
     .top-right-buttons {
         display: grid;
@@ -249,9 +243,7 @@ body {
         background: rgba(0,0,0,0.6);
     }
 
-    .nav-btn:hover {
-        transform: scale(1.03);
-    }
+    .nav-btn:hover { transform: scale(1.03); }
 
     .bottom-left-social {
         flex-direction: row;
@@ -259,12 +251,9 @@ body {
         padding: 14px 28px;
         border-radius: 40px;
         margin: 10px 0 30px;
-        background: rgba(0,0,0,0.5);
     }
 
-    .social-icon {
-        font-size: 26px;
-    }
+    .social-icon { font-size: 26px; }
 }
 
 @media (max-width: 360px) {
@@ -285,33 +274,110 @@ body {
 <div class="shape shape-4"></div>
 <div class="shape shape-5"></div>
 
-<!-- BACKGROUND CODE -->
+<!-- BACKGROUND CODE SNIPPETS -->
+
 <div class="code code1">
 import pandas as pd<br>
 import numpy as np<br>
 df = pd.read_csv('data.csv')<br>
 df.dropna(inplace=True)
 </div>
+
 <div class="code code2">
 from sklearn.linear_model import LinearRegression<br>
 model = LinearRegression()<br>
 model.fit(X_train, y_train)<br>
 preds = model.predict(X_test)
 </div>
+
 <div class="code code3">
 import tensorflow as tf<br>
 model = tf.keras.Sequential()<br>
-model.add(Dense(128, activation='relu'))
+model.add(Dense(128, activation='relu'))<br>
+model.compile(optimizer='adam', loss='mse')
 </div>
+
 <div class="code code4">
 import matplotlib.pyplot as plt<br>
 plt.plot(data)<br>
+plt.title('Loss Curve')<br>
 plt.show()
 </div>
+
 <div class="code code5">
 from sklearn.cluster import KMeans<br>
 kmeans = KMeans(n_clusters=3)<br>
-kmeans.fit(X)
+kmeans.fit(X)<br>
+labels = kmeans.labels_
+</div>
+
+<div class="code code6">
+import torch<br>
+import torch.nn as nn<br>
+class Net(nn.Module):<br>
+&nbsp;&nbsp;def __init__(self):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;super().__init__()
+</div>
+
+<div class="code code7">
+from transformers import pipeline<br>
+nlp = pipeline('sentiment-analysis')<br>
+result = nlp('I love AI!')<br>
+print(result)
+</div>
+
+<div class="code code8">
+import seaborn as sns<br>
+sns.heatmap(df.corr())<br>
+plt.title('Correlation Matrix')<br>
+plt.show()
+</div>
+
+<div class="code code9">
+from sklearn.model_selection import<br>
+&nbsp;&nbsp;train_test_split<br>
+X_train, X_test, y_train, y_test =<br>
+&nbsp;&nbsp;train_test_split(X, y, test_size=0.2)
+</div>
+
+<div class="code code10">
+accuracy = model.evaluate(X_test, y_test)<br>
+print(f'Accuracy: {accuracy[1]*100:.2f}%')<br>
+model.save('model.h5')
+</div>
+
+<div class="code code11">
+from sklearn.preprocessing import<br>
+&nbsp;&nbsp;StandardScaler<br>
+scaler = StandardScaler()<br>
+X_scaled = scaler.fit_transform(X)
+</div>
+
+<div class="code code12">
+import cv2<br>
+img = cv2.imread('image.jpg')<br>
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>
+cv2.imshow('Gray', gray)
+</div>
+
+<div class="code code13">
+from sklearn.metrics import<br>
+&nbsp;&nbsp;confusion_matrix, classification_report<br>
+print(classification_report(y_test, preds))
+</div>
+
+<div class="code code14">
+import nltk<br>
+from nltk.tokenize import word_tokenize<br>
+tokens = word_tokenize(text)<br>
+print(tokens)
+</div>
+
+<div class="code code15">
+from scipy import stats<br>
+z_scores = stats.zscore(df)<br>
+df_clean = df[(z_scores < 3).all(axis=1)]<br>
+print(df_clean.shape)
 </div>
 
 <!-- NAME -->
