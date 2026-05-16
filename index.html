@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anif Amin | AI & Data Science Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 30%, #3a3a3a 60%, #1a1a1a 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.shape {
+    position: fixed;
+    z-index: 0;
+    opacity: 0.15;
+    animation: floatShape 20s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes floatShape {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-50px) rotate(180deg); }
+}
+
+.shape-1 { top: 10%; left: 5%; width: 100px; height: 100px; background: #c0c0c0; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+.shape-2 { bottom: 15%; right: 8%; width: 150px; height: 150px; background: silver; clip-path: circle(50% at 50% 50%); }
+.shape-3 { top: 50%; left: 85%; width: 80px; height: 80px; background: #a8a8a8; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.shape-4 { bottom: 30%; left: 10%; width: 60px; height: 60px; background: #d0d0d0; }
+.shape-5 { top: 70%; right: 20%; width: 120px; height: 120px; background: linear-gradient(135deg, #c0c0c0, #e0e0e0); }
+
+@media (max-width: 768px) {
+    .shape { display: none; }
+}
+
+.code {
+    position: fixed;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.code1  { top: 60px;   right: 60px;  color: rgba(0,200,255,0.35); }
+.code2  { top: 260px;  right: 120px; color: rgba(0,200,255,0.25); }
+.code3  { bottom: 120px; right: 80px; color: rgba(0,200,255,0.2); }
+.code4  { top: 180px;  left: 60px;   color: rgba(0,200,255,0.15); }
+.code5  { bottom: 200px; left: 100px; color: rgba(0,200,255,0.12); }
+.code6  { top: 5%;    left: 30%;   color: rgba(0,255,180,0.18); }
+.code7  { top: 20%;   left: 55%;   color: rgba(0,200,255,0.15); }
+.code8  { top: 40%;   right: 5%;   color: rgba(0,255,180,0.13); }
+.code9  { bottom: 5%; left: 35%;   color: rgba(0,200,255,0.18); }
+.code10 { bottom: 30%; right: 25%; color: rgba(0,255,180,0.15); }
+.code11 { top: 75%;   left: 20%;   color: rgba(0,200,255,0.13); }
+.code12 { top: 10%;   left: 45%;   color: rgba(0,255,180,0.12); }
+.code13 { bottom: 45%; left: 5%;   color: rgba(0,200,255,0.10); }
+.code14 { top: 55%;   right: 30%;  color: rgba(0,255,180,0.10); }
+.code15 { bottom: 10%; right: 40%; color: rgba(0,200,255,0.12); }
+
+@media (max-width: 768px) {
+    .code { display: none; }
+}
+
+.top-left-name {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+}
+
+.top-left-name h1 {
+    font-size: 44px;
+    background: linear-gradient(135deg, #4a1111, #c0c0c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.top-left-name p {
+    font-size: 16px;
+    color: #efe8e8;
+}
+
+.top-right-buttons {
+    position: fixed;
+    top: 70px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nav-btn {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(192,192,192,0.4);
+    border-radius: 50px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.nav-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(192,192,192,0.3);
+}
+
+.detail-panel {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    left: auto;
+    transform: translateY(-50%);
+    margin-right: 15px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #c0c0c0;
+    border-radius: 20px 50px 50px 20px;
+    padding: 12px 20px;
+    min-width: 260px;
+    max-width: 320px;
+    font-size: 12px;
+    color: #e0e0e0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    text-align: left;
+    line-height: 1.5;
+}
+
+.nav-btn:hover .detail-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(-5px);
+}
+
+.detail-panel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    left: auto;
+    transform: translateY(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #c0c0c0;
+}
+
+.detail-panel strong {
+    color: #c0c0c0;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.detail-panel hr {
+    margin: 8px 0;
+    border-color: rgba(192,192,192,0.3);
+}
+
+.detail-panel .click-text {
+    color: #87CEEB;
+    display: block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.bottom-left-social {
+    position: fixed;
+    left: 30px;
+    bottom: 60px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    border-radius: 30px;
+}
+
+.social-icon {
+    position: relative;
+    font-size: 28px;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+.social-tooltip {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 15px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    border: 1px solid #c0c0c0;
+    color: #e0e0e0;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+.social-icon:hover .social-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(5px);
+}
+
+.social-tooltip::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent #c0c0c0 transparent transparent;
+}
+
+.social-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: #e0e0e0;
+    transition: fill 0.3s ease;
+}
+
+.social-icon:hover svg {
+    fill: #c0c0c0;
+}
+
+.center-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.center-profile-img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #c0c0c0;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.center-profile-img:hover {
+    transform: scale(1.05);
+    border-color: #ff4444;
+}
+
+.welcome-text {
+    font-size: 36px;
+    color: #ff4444;
+    margin-top: 10px;
+}
+
+.welcome-sub {
+    font-size: 18px;
+    color: #87CEEB;
+    margin-top: 10px;
+}
+
+/* ===== DOWNLOAD RESUME LINK ===== */
+.download-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    text-decoration: none;
+    color: #ff4444;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.download-resume::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #ff4444;
+    transition: background 0.3s ease;
+}
+
+.download-resume:hover {
+    color: #ff6666;
+}
+
+.download-resume:hover::after {
+    background: #ff6666;
+}
+
+.download-resume .arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.download-resume:hover .arrow-icon {
+    transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+    .top-left-name,
+    .top-right-buttons,
+    .bottom-left-social,
+    .center-content {
+        position: static;
+        transform: none;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .top-left-name {
+        width: 100%;
+        text-align: center;
+        padding: 24px 20px 10px;
+        background: rgba(0,0,0,0.4);
+    }
+
+    .top-left-name h1 { font-size: 28px; }
+    .top-left-name p { font-size: 13px; margin-top: 4px; }
+
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 20px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .center-profile-img {
+        width: 160px;
+        height: 160px;
+        border-width: 3px;
+        border-radius: 50%;
+    }
+
+    .welcome-text { font-size: 22px; margin-top: 16px; }
+    .welcome-sub { font-size: 14px; margin-top: 8px; padding: 0 10px; }
+
+    .top-right-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 10px 20px 20px;
+        width: 100%;
+        max-width: 400px;
+        position: static;
+    }
+
+    .nav-btn {
+        text-align: center;
+        padding: 12px 10px;
+        font-size: 13px;
+        border-radius: 14px;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .detail-panel, .social-tooltip {
+        display: none;
+    }
+
+    .nav-btn:hover { transform: scale(1.03); }
+
+    .bottom-left-social {
+        flex-direction: row;
+        gap: 24px;
+        padding: 14px 28px;
+        border-radius: 40px;
+        margin: 10px 0 30px;
+        position: static;
+    }
+
+    .social-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .top-left-name h1 { font-size: 22px; }
+    .center-profile-img { width: 130px; height: 130px; }
+    .welcome-text { font-size: 18px; }
+    .top-right-buttons { grid-template-columns: 1fr; max-width: 260px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SHAPES -->
+<div class="shape shape-1"></div>
+<div class="shape shape-2"></div>
+<div class="shape shape-3"></div>
+<div class="shape shape-4"></div>
+<div class="shape shape-5"></div>
+
+<!-- BACKGROUND CODE SNIPPETS -->
+<div class="code code1">
+import pandas as pd<br>
+import numpy as np<br>
+df = pd.read_csv('data.csv')<br>
+df.dropna(inplace=True)
+</div>
+<div class="code code2">
+from sklearn.linear_model import LinearRegression<br>
+model = LinearRegression()<br>
+model.fit(X_train, y_train)<br>
+preds = model.predict(X_test)
+</div>
+<div class="code code3">
+import tensorflow as tf<br>
+model = tf.keras.Sequential()<br>
+model.add(Dense(128, activation='relu'))<br>
+model.compile(optimizer='adam', loss='mse')
+</div>
+<div class="code code4">
+import matplotlib.pyplot as plt<br>
+plt.plot(data)<br>
+plt.title('Loss Curve')<br>
+plt.show()
+</div>
+<div class="code code5">
+from sklearn.cluster import KMeans<br>
+kmeans = KMeans(n_clusters=3)<br>
+kmeans.fit(X)<br>
+labels = kmeans.labels_
+</div>
+<div class="code code6">
+import torch<br>
+import torch.nn as nn<br>
+class Net(nn.Module):<br>
+&nbsp;&nbsp;def __init__(self):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;super().__init__()
+</div>
+<div class="code code7">
+from transformers import pipeline<br>
+nlp = pipeline('sentiment-analysis')<br>
+result = nlp('I love AI!')<br>
+print(result)
+</div>
+<div class="code code8">
+import seaborn as sns<br>
+sns.heatmap(df.corr())<br>
+plt.title('Correlation Matrix')<br>
+plt.show()
+</div>
+<div class="code code9">
+from sklearn.model_selection import<br>
+&nbsp;&nbsp;train_test_split<br>
+X_train, X_test, y_train, y_test =<br>
+&nbsp;&nbsp;train_test_split(X, y, test_size=0.2)
+</div>
+<div class="code code10">
+accuracy = model.evaluate(X_test, y_test)<br>
+print(f'Accuracy: {accuracy[1]*100:.2f}%')<br>
+model.save('model.h5')
+</div>
+<div class="code code11">
+from sklearn.preprocessing import<br>
+&nbsp;&nbsp;StandardScaler<br>
+scaler = StandardScaler()<br>
+X_scaled = scaler.fit_transform(X)
+</div>
+<div class="code code12">
+import cv2<br>
+img = cv2.imread('image.jpg')<br>
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<br>
+cv2.imshow('Gray', gray)
+</div>
+<div class="code code13">
+from sklearn.metrics import<br>
+&nbsp;&nbsp;confusion_matrix, classification_report<br>
+print(classification_report(y_test, preds))
+</div>
+<div class="code code14">
+import nltk<br>
+from nltk.tokenize import word_tokenize<br>
+tokens = word_tokenize(text)<br>
+print(tokens)
+</div>
+<div class="code code15">
+from scipy import stats<br>
+z_scores = stats.zscore(df)<br>
+df_clean = df[(z_scores < 3).all(axis=1)]<br>
+print(df_clean.shape)
+</div>
+
+<!-- NAME -->
+<div class="top-left-name">
+    <h1>Anif Amin</h1>
+    <p>✨ AI & Data Science Enthusiast ✨</p>
+</div>
+
+<!-- CENTER PROFILE -->
+<div class="center-content">
+    <img src="images/image.jpg" alt="profile" class="center-profile-img">
+    <div class="welcome-text">Welcome to my portfolio</div>
+    <div class="welcome-sub">Explore my journey in AI & Data Science</div>
+
+    <!-- DOWNLOAD RESUME LINK -->
+    <a href="images/resume.pdf" class="download-resume" target="_blank">
+        Download Resume
+        <span class="arrow-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </span>
+    </a>
+</div>
+
+<!-- NAV BUTTONS -->
+<div class="top-right-buttons">
+    <a href="education.html" class="nav-btn">
+        🎓 Education
+        <div class="detail-panel">
+            <strong>🎓 Education</strong>
+            • B.Tech in CSE (2024)<br>
+            • Universal Institute of Engg & Tech, Mohali<br>
+            • 12th Science with IT<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+
+    <a href="certificates.html" class="nav-btn">
+        📜 Certificates
+        <div class="detail-panel">
+            <strong>📜 Certifications</strong>
+            • Data Analytics - Deloitte (Forage)<br>
+            • Intro to ML - Kaggle<br>
+            • Python with AI - PrernaGati<br>
+            • Python Training - Infowiz<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+
+    <a href="skills.html" class="nav-btn">
+        ⚡ Skills
+        <div class="detail-panel">
+            <strong>⚡ Technical Skills</strong>
+            • AI/ML: ML, Deep Learning, Prompt Eng<br>
+            • Python, SQL, JavaScript<br>
+            • Pandas, NumPy, Scikit-learn<br>
+            • Git, VS Code, Kali Linux<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+
+    <a href="project.html" class="nav-btn">
+        🚀 Projects
+        <div class="detail-panel">
+            <strong>🚀 Featured Projects</strong>
+            • Hybrid Movie Recommender System<br>
+            • Multi-Modal AI System<br>
+            • House Price Prediction<br>
+            • Desktop Assistant<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+
+    <a href="experience.html" class="nav-btn">
+        💼 Experience
+        <div class="detail-panel">
+            <strong>💼 Experience & Training</strong>
+            • Python with AI Trainee - PrernaGati (2024)<br>
+            • Python Trainee - Infowiz (2022)<br>
+            • 120+ hours intensive training<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+
+    <a href="contact.html" class="nav-btn">
+        📞 Contact
+        <div class="detail-panel">
+            <strong>📞 Contact Me</strong>
+            📧 anifamin01@gmail.com<br>
+            💼 linkedin.com/in/aanif001<br>
+            🐙 github.com/aanif001<br>
+            <hr>
+            <span class="click-text">🔍 Click for details</span>
+        </div>
+    </a>
+</div>
+
+<!-- SOCIAL ICONS (resume icon removed) -->
+<div class="bottom-left-social">
+    <a href="mailto:anifamin01@gmail.com" class="social-icon">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span class="social-tooltip">anifamin01@gmail.com</span>
+    </a>
+
+    <a href="https://linkedin.com/in/aanif001" class="social-icon" target="_blank">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+        </svg>
+        <span class="social-tooltip">linkedin.com/in/aanif001</span>
+    </a>
+
+    <a href="https://github.com/aanif001" class="social-icon" target="_blank">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+        </svg>
+        <span class="social-tooltip">github.com/aanif001</span>
+    </a>
+</div>
+
+</body>
+</html>
